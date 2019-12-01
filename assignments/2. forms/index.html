@@ -5,6 +5,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Forms</title>
+    <style>
+    .form{
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    input,button{
+      margin-top: 2rem;
+      margin-left: 2rem;
+      margin-right: 2rem;
+    }
+
+    .p1,.p2,.p3{
+      display: none;
+      color: red;
+    }
+    </style>
   </head>
-  <body></body>
+  <body>
+    <form class="form">
+      <div>FullName<input type="text" id="fullname">
+        <p class="p1">Name can't be empty! </p>
+      </div>
+      <div>Email<input type="email" id = 'email'>
+        <p class="p2">Email can't be empty! </p></div>
+      <div>Password<input type="password" id="password">
+        <p class="p3">password can't be empty! </p></div>
+      <button type="submit">Sign up</button>
+    </form>
+    <h1></h1>
+    <script>
+    const form = document.forms[0];
+    const fullName = document.querySelector('#fullname');
+    const email = document.querySelector('#email');
+    const password = document.querySelector('#password');
+    const button = document.querySelector('button');
+    const p1 = document.querySelector('.p1');
+    const p2 = document.querySelector('.p2');
+    const p3 = document.querySelector('.p3');
+    const h1 = document.querySelector('h1');
+
+    // function full(){
+    //   if(!fullName.textContent){
+    //     fullName.onBlur();
+    //     p1.style.display = "block";
+    //   }
+    // }
+
+    fullName.onblur = function(){
+      if(!fullName.value){
+      p1.style.display = "inline-block";
+      }
+    }
+    fullName.onfocus = function(){
+      p1.style.display = 'none'
+    } 
+
+    email.onblur = function(){
+      if(!email.value){
+      p2.style.display = "inline-block";
+      }
+    }
+    email.onfocus = function(){
+      p2.style.display = 'none';
+    } 
+
+    password.onblur = function(){
+      if(!password.value){
+      p3.style.display = "inline-block";
+      }
+    }
+    password.onfocus = function(){
+      p3.style.display = 'none';
+    }
+
+    function showit(event){
+      event.preventDefault();
+      form.style.display = 'none';
+      h1.textContent = `You are ${fullName.value} Your email: ${email.value}and password is ${password.value}`
+    } 
+    function show(event){
+      if(event.keyCode == 13){
+      event.preventDefault();
+      form.style.display = 'none';
+      h1.textContent = `You are ${fullName.value} Your email: ${email.value}and password is ${password.value}`
+    }
+    }
+    button.addEventListener('click', showit);
+    button.addEventListener('keyup',show);
+
+    </script>
+  </body>
 </html>
